@@ -7,18 +7,45 @@
 <nav th:replace="fragments :: navigation"></nav>
 <p th:unless="${events} and ${events.size()}">No Events!</p>
 
-<nav>
-   <table class="table table-striped">
-       <thead>
-       <tr>
-           <th>Name</th>
-       </tr>
-       </thead>
-        <tr th:each="event: ${events}">
-            <td th:text ="${event}"></td>
+<!--Using th:block and th:each, put together the events and their descriptions in a table as opposed to an unordered list.-->
+
+
+<th:block th:each = "event : ${events}">
+  <nav>  <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Event Name</th>
+            <th>Event Description</th>
+            <th>Address</th>
+            <th>Picture</th>
+        </tr>
+        </thead>
+        <tr>
+            <td th:text ="${event.getKey()}"></td>
+            <td th:text ="${event.getValue()}"></td>
+            <td th:replace = "fragments :: address"></td>
+            <td>
+                <img th:src = "@{https://tinypng.com/images/example-shrunk.png}" /></td>
         </tr>
     </table>
-</nav>
+  </nav>
+
+<!--    <h3 th:text = "${event.getKey()}">Event Name</h3>-->
+<!--    <p th:text = "${event.getValue()}">Info</p>-->
+</th:block>
+
+<!--<nav>-->
+<!--   <table class="table table-striped">-->
+<!--       <thead>-->
+<!--       <tr>-->
+<!--           <th>Name</th>-->
+<!--       </tr>-->
+<!--       </thead>-->
+<!--        <tr th:each="event: ${events}">-->
+<!--            <td th:text ="${event}"></td>-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--</nav>-->
 
 </body>
 </html>

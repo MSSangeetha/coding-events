@@ -8,13 +8,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
 @RequestMapping("events")
 public class EventController {
 
-    private static List<String> events = new ArrayList<>();
+//    private static List<String> events = new ArrayList<>();
+
+    //Making events as HashList
+HashMap<String, String> events = new HashMap<>();
 
     @GetMapping
     public String displayAllEvents(Model model){
@@ -23,6 +27,13 @@ public class EventController {
 //        events.add("Strange Loop");
 //        events.add("Apple WWDC");
 //        events.add("SpringOne Platform");
+//        model.addAttribute("events",events);
+//        return "events/index";
+
+        //Adding key/values to the Hashmap
+        events.put("Code With Pride","First Event");
+        events.put("Strange Loop","Second Event");
+        events.put("Apple WWDC","Third Event");
         model.addAttribute("events",events);
         return "events/index";
 }
@@ -36,9 +47,16 @@ public class EventController {
     //lives at /events/create/
 @PostMapping("create")
 public String createEvent(@RequestParam String eventName){
-    events.add(eventName);
+//    events.add(eventName);
+    events.put(eventName,"Default Description");
     return "redirect:"; //redirects to the homepage (/events)
 }
+
+//lives at /events/address
+@GetMapping("address")
+    public String renderAddress(){
+        return "events/address";
+    }
 
 
 }
