@@ -56,5 +56,25 @@ return "events/delete";
         return "redirect:";
     }
 
+//    Create a method to display an edit form with this signature:
+@GetMapping("edit/{eventId}")
+public String displayEditForm(Model model, @PathVariable int eventId) {
+    // controller code will go here
+    Event editingEvent = EventData.getById(eventId);
+    model.addAttribute("event",editingEvent);
+    String title = "Edit Event " + editingEvent.getName() + " (id=" + editingEvent.getId() + ")";
+    model.addAttribute("title", title );
+    return "events/edit";
 
+}
+
+//    Create a method to process the form with this signature:
+@PostMapping("edit")
+public String processEditForm(int eventId, String name, String description) {
+    // controller code will go here
+    Event editEvent = EventData.getById(eventId);
+    editEvent.setName(name);
+    editEvent.setDescription(description);
+    return "redirect:";
+}
 }
