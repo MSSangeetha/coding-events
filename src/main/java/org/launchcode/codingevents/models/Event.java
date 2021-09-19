@@ -1,10 +1,9 @@
 package org.launchcode.codingevents.models;
 
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Event {
@@ -26,12 +25,32 @@ public class Event {
 @Email(message = "Invalid Email. Try Again!")
 private String contactEmail;
 
+//Adding a new fields as per the excercise instruction
+@NotBlank(message="Location required")
+@Size(max = 500)
+    private String location;
+
+@AssertTrue(message = "Must be True")
+private boolean register;
+
+    @Positive(message="Number of attendees must be more than zero")
+private int numberOfAttendees;
+
+@Future
+    private Date date;
+
+
+
     //Constructor
-    public Event(String name, String description, String contactEmail) {
+    public Event(String name, String description, String contactEmail,String location, boolean register,int numberOfAttendees,Date date) {
         this.name = name;
         this.description = description;
         this.id = nextId;
         this.contactEmail = contactEmail;
+        this.location = location;
+        this.register = register;
+        this.numberOfAttendees = numberOfAttendees;
+        this.date = date;
         nextId++;
     }
 
@@ -63,6 +82,38 @@ private String contactEmail;
 
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public int getNumberOfAttendees() {
+        return numberOfAttendees;
+    }
+
+    public void setNumberOfAttendees(int numberOfAttendees) {
+        this.numberOfAttendees = numberOfAttendees;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public boolean isRegister() {+
+        return register;
+    }
+
+    public void setRegister(boolean register) {
+        this.register = register;
     }
 
     //only getter for ID, coz we dont allow others to set the id, we need a unique id

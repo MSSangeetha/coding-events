@@ -37,7 +37,6 @@ public class EventController {
 //        OR model.addAttribute(new Event());
         return "events/create";
 }
-
     //lives at /events/create/
 @PostMapping("create")
 public String createEvent(@ModelAttribute @Valid Event newEvent, Errors errors,Model model){
