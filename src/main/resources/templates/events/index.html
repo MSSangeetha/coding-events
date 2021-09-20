@@ -20,6 +20,7 @@
            <th>Register</th>
            <th>Number of Attendees</th>
            <th>Date</th>
+           <th>Type</th>
        </tr>
        </thead>
         <tr th:each="event: ${events}">
@@ -46,6 +47,9 @@
             </td>
             <td>
                 <a th:text="${event.date}">Date</a>
+            </td>
+            <td>
+                <a th:text="${event.type.displayName}">Date</a>
             </td>
         </tr>
 

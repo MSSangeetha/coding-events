@@ -39,24 +39,27 @@ private int numberOfAttendees;
 @Future
     private Date date;
 
-
+//Adding a field of type of the enum (EventType)
+private EventType type;
 
     //Constructor
-    public Event(String name, String description, String contactEmail,String location, boolean register,int numberOfAttendees,Date date) {
+    public Event(String name, String description, String contactEmail,String location, boolean register,int numberOfAttendees,Date date,EventType type) {
+        this();
         this.name = name;
         this.description = description;
-        this.id = nextId;
         this.contactEmail = contactEmail;
         this.location = location;
         this.register = register;
         this.numberOfAttendees = numberOfAttendees;
         this.date = date;
-        nextId++;
+        this.type = type;
+
     }
 
     //Constructor with no arguments
     public Event(){
-
+        this.id = nextId;
+        nextId++;
     }
 
     //Getter and Setter
@@ -108,12 +111,21 @@ private int numberOfAttendees;
         this.date = date;
     }
 
-    public boolean isRegister() {+
+    public boolean isRegister() {
         return register;
     }
 
     public void setRegister(boolean register) {
         this.register = register;
+    }
+
+    //Getters and Setters for the Enum
+    public EventType getType() {
+        return type;
+    }
+
+    public void setType(EventType type) {
+        this.type = type;
     }
 
     //only getter for ID, coz we dont allow others to set the id, we need a unique id
